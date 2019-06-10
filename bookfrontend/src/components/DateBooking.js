@@ -1,30 +1,30 @@
-import React from "react";
-import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker'
+import 'rc-time-picker/assets/index.css';
 
+import React from 'react';
+import moment from 'moment';
+import TimePicker from 'rc-time-picker';
 
 export default class DateBooking extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      booking_Date: new Date()
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = {
+    value: moment(),
+  };
 
-  handleChange(date) {
-    console.log(date)
-    this.setState({
-      booking_Date: date
-    });
-  }
+//   handleValueChange = value => {
+//     //  console.log(value && value.format('HH:mm:ss'));
+//     this.setState({ value });
+//   };
+//   handleValueChangeDate = value => {
+//     this.setState({ booking_Date: value });
+//   };
 
   render() {
+    const { value } = this.state;
     return (
-      <DateTimeRangePicker
-        value = {this.state.booking_Date}
-        selected={this.state.date}
-        onChange={this.props.handleChange}
-      />
+      <div>
+          <input type="date" value={moment()} onChange={this.handleValueChange}/>
+        <TimePicker defaultValue={value} onChange={this.handleValueChange} showSecond={false} />
+        <TimePicker value={value} onChange={this.handleValueChange} showSecond={false} />
+      </div>
     );
   }
 }

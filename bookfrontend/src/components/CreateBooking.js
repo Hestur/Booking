@@ -14,7 +14,9 @@ export default class Createbooking extends Component {
     this.state = {
       booking_Heading: "",
       booking_Content: "",
-      booking_Date: new Date(),
+      booking_Date: "",
+      booking_TimeStart: "",
+      booking_TimeEnd: "",
       booking_completeted: false
     };
   }
@@ -30,9 +32,14 @@ export default class Createbooking extends Component {
   }
   onChangebookingDate(date) {
     this.setState({
-      booking_Date: date
+      booking_Date: date.target.value
     });
   }
+
+
+
+
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -41,12 +48,15 @@ export default class Createbooking extends Component {
     console.log(`booking Heading: ${this.state.booking_Heading}`);
     console.log(`booking Content: ${this.state.booking_Content}`);
     console.log(`booking Date: ${this.state.booking_Date}`);
+    console.log(`booking TimeStart: ${this.state.booking_TimeStart}`);
+    console.log(`booking TimeEnd: ${this.state.booking_TimeEnd}`);
     console.log(`booking Completed: ${this.state.booking_completed}`);
-    console.log(this.state.booking_Date + "gg");
     const newbooking = {
       booking_Heading: this.state.booking_Heading,
       booking_Content: this.state.booking_Content,
       booking_Date: this.state.booking_Date,
+      booking_TimeStart: this.booking_TimeStart,
+      booking_TimeEnd: this.booking_TimeEnd,
       booking_completed: this.state.booking_completed
     };
 
@@ -54,12 +64,12 @@ export default class Createbooking extends Component {
       console.log(res.data);
     });
 
-    this.props.history.push("/");
-
     this.setState({
       booking_Heading: "",
       booking_Content: "",
       booking_Date: "",
+      booking_TimeStart: "",
+      booking_TimeEnd: "",
       booking_completeted: false
     });
   }
@@ -89,11 +99,9 @@ export default class Createbooking extends Component {
           </div>
           <div className="form-group">
             <DateBooking
-              value={this.state.date}
               selected={this.state.date}
-              handleChange={this.onChangebookingDate}
+              onChange={this.onChangebookingDate}
             />
-            <span>Format: DD/MM/YYYY</span>
           </div>
           
           <div className="form-group">

@@ -38,7 +38,7 @@ BookingRoutes.route('/:id').get(function(req, res) {
 
 
 BookingRoutes.route('/add').post(function(req, res){
-    let booking = new Booking(req.body);
+    const booking = new Booking(req.body);
     booking.save()
     .then(Booking => {
         res.status(200).json({'Booking': 'Booking added successfully'});

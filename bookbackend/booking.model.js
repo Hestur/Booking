@@ -9,7 +9,13 @@ let Booking = new Schema({
         type: String
     },
     booking_Date: {
-        type: String
+        type: Date
+    },
+    booking_TimeStart:{
+        type: Date
+    },
+    booking_TimeEnd: {
+        type: Date
     },
     booking_completed: {
         type: Boolean
